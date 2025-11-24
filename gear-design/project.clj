@@ -3,7 +3,5 @@
                  [com.kimbsy/clunk "2.0.0"]]
   :main ^:skip-aot gear-design.core
   :target-path "target/%s"
-  ;; @NOTE: un-comment for MacOS
-  ;; :jvm-opts ["-XstartOnFirstThread"]
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
