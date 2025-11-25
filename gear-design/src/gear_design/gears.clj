@@ -9,7 +9,7 @@
   [n-teeth]
   (let [major-radius 10
         minor-radius 3.3
-        recess-radius 0.5
+        recess-radius 0.46
         major-size [(* major-radius 2) (* major-radius 2)]
         major-offset [(- major-radius) (- major-radius)]
         teeth-positions (mapv (partial mapv + major-offset)
@@ -33,6 +33,7 @@
                    teeth
                    (os/circle {:radius (+ major-radius (* minor-radius 0.4))}))
 
+          ;; add to a disc
           on-disc (os/union
                    blunted
                    (os/circle {:radius major-radius}))
@@ -46,10 +47,15 @@
                              (os/rotate
                               {:z (/ 360 n-teeth 2)}
                               (os/translate {:x x :y y}
-                                            (os/circle {:radius recess-radius})))))
-                    
-                    )
-]
-      recessed)))
+                                            (os/circle {:radius recess-radius}))))))
+
+          ;; cut a hole in the middle
+          holed (os/difference
+                 recessed
+                 (os/circle {:radius 3}))
+
+          ;; give it some thickness
+          extruded (os/linear-extrude {:height 2} holed)]
+      extruded)))
 
 (os/write (gear 25))

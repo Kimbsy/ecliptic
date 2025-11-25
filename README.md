@@ -10,7 +10,7 @@ http://www.ulisp.com/show?36VJ
 
 https://github.com/ahmetus/esp32-ulisp-with-platformio
 
-https://github.com/cartesian-theatrics/clj-manifold3d
+https://github.com/herichovadajana/squiggle
 
 boards:
 
